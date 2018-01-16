@@ -1,5 +1,7 @@
 package br.com.progest.bancoQuestoes.models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Questao {
@@ -23,11 +27,19 @@ public class Questao {
 	private String corpo;
 	private String urlQuestao;
 
+	@Temporal(TemporalType.DATE)
+	private Date usadaEm;
+
+	@Temporal(TemporalType.DATE)
+	private Date adicionadaEm;
+
 	public Questao(Materia materia, String titulo, String corpo, String urlQuestao) {
 		this.materia = materia;
 		this.titulo = titulo;
 		this.corpo = corpo;
 		this.urlQuestao = urlQuestao;
+		this.usadaEm = null;
+		this.adicionadaEm = new Date();
 	}
 
 	@Deprecated
@@ -70,10 +82,26 @@ public class Questao {
 		return id;
 	}
 
+	public Date getUsadaEm() {
+		return usadaEm;
+	}
+
+	public void setUsadaEm(Date usadaEm) {
+		this.usadaEm = usadaEm;
+	}
+
+	public Date getAdicionadaEm() {
+		return adicionadaEm;
+	}
+
+	public void setAdicionadaEm(Date adicionadaEm) {
+		this.adicionadaEm = adicionadaEm;
+	}
+
 	@Override
 	public String toString() {
 		return "Questao [id=" + id + ", materia=" + materia + ", titulo=" + titulo + ", corpo=" + corpo
-				+ ", urlQuestao=" + urlQuestao + "]";
+				+ ", urlQuestao=" + urlQuestao + ", usadaEm=" + usadaEm + ", adicionadaEm=" + adicionadaEm + "]";
 	}
 
 }
