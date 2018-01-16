@@ -1,5 +1,7 @@
 package br.com.progest.bancoQuestoes.servicesImplementation;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,12 @@ public class MateriaServiceImpl implements MateriaService {
 	public long persist(Materia materia) {
 		log.info("Persisting materia: " + materia);
 		return repository.save(materia).getId();
+	}
+
+	@Override
+	public List<Materia> findAll() {
+		log.info("Getting all materias");
+		return repository.findAll();
 	}
 
 }
