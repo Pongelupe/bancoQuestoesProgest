@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	rel="stylesheet" />
+<title>Progest</title>
+</head>
+<body>
+
+	<h1>Cadastro de questões</h1>
+	<form action="questao" method="post" enctype="multipart/form-data">
+		<div class="form-group form-inline">
+			<label for="nome">Matéria</label>
+				<select class="form-control" name="nomeMateria">
+					 <th:block th:each="materia : ${materias}">
+					 	<option th:text="${materia.nome}"></option>
+					 </th:block>
+			    </select>
+			<label for="descricao">Descrição</label> 
+			<input type="text" class="form-control" name="descricao" placeholder="ex. Questão sobre e-mail" />
+			<br />
+		</div>
+		<div class="form-group">
+			<label for="corpo">Corpo da questão</label>
+			<textarea  class="form-control" rows="9" cols="9" name ="corpo"></textarea> 
+			<br />
+		</div>
+		<div class="form-group">
+			<label for="utilizada">Dificuldade</label>
+			<select class="form-control" name="dificuldade">
+			      <option>Fácil</option>
+			      <option>Médio</option>
+			      <option>Difícil</option>
+			</select>
+			<br />
+		</div>
+		<div class="form-group form-inline">
+			<label for="utilizada">Já foi utilizada? Sim:</label>
+			<input type="checkbox" name="utilizada"/>
+		</div>
+		<div class="form-group form-inline">
+			<label for="processoSeletivo">É de processo seletivo? Sim:</label>
+			<input type="checkbox" name="isprocessoSeletivo"/>
+		</div>
+		<div class="form-group form-inline">
+			<label>Inserir imagem </label>
+			<input type="file" name="foto"/>
+		</div>
+		<button type="submit" class="btn btn-success">Cadastrar</button>
+	</form>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>

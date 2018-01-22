@@ -1,5 +1,6 @@
 package br.com.progest.bancoQuestoes.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,6 +31,11 @@ public class Materia {
 
 	@Deprecated
 	public Materia() {
+	}
+
+	public Materia(String nome) {
+		this.nome = nome;
+		this.questoes = new ArrayList<>();
 	}
 
 	public String getNome() {

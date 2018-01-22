@@ -28,6 +28,7 @@ public class Questao {
 	private String descricao;
 	private String corpo;
 	private String urlQuestao;
+	private boolean isProcessoSeletivo;
 
 	@Enumerated(EnumType.STRING)
 	private Dificuldade dificuldade;
@@ -38,12 +39,14 @@ public class Questao {
 	@Temporal(TemporalType.DATE)
 	private Date adicionadaEm;
 
-	public Questao(Materia materia, String descricao, String corpo, String urlQuestao, Dificuldade dificuldade) {
+	public Questao(Materia materia, String descricao, String corpo, String urlQuestao, Dificuldade dificuldade,
+			boolean isProcessoSeletivo) {
 		this.materia = materia;
 		this.descricao = descricao;
 		this.corpo = corpo;
 		this.urlQuestao = urlQuestao;
 		this.dificuldade = dificuldade;
+		this.isProcessoSeletivo = isProcessoSeletivo;
 		this.usadaEm = null;
 		this.adicionadaEm = new Date();
 	}
@@ -88,8 +91,24 @@ public class Questao {
 		return dificuldade;
 	}
 
-	public void setDificuldade(Dificuldade dificuldade) {
-		this.dificuldade = dificuldade;
+	public boolean isProcessoSeletivo() {
+		return isProcessoSeletivo;
+	}
+
+	public void setProcessoSeletivo(boolean isProcessoSeletivo) {
+		this.isProcessoSeletivo = isProcessoSeletivo;
+	}
+
+	public void setDificuldade(String dificuldade) {
+		dificuldade = dificuldade.toUpperCase();
+		if (dificuldade.startsWith("F"))
+			this.dificuldade = Dificuldade.FACIL;
+
+		else if (dificuldade.startsWith("M"))
+			this.dificuldade = Dificuldade.MEDIO;
+
+		else
+			this.dificuldade = Dificuldade.DIFICIL;
 	}
 
 	public long getId() {
