@@ -19,7 +19,7 @@ public class QuestaoValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		questao = (Questao) target;
 
-		final String titulo = questao.getTitulo();
+		final String titulo = questao.getDescricao();
 		final String corpo = questao.getCorpo();
 		final Materia materia = questao.getMateria();
 

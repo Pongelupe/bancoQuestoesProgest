@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.progest.bancoQuestoes.models.Materia;
 import br.com.progest.bancoQuestoes.models.Response;
-import br.com.progest.bancoQuestoes.servicesImplementation.MateriaServiceImpl;
+import br.com.progest.bancoQuestoes.repositories.MateriaRepository;
 import br.com.progest.bancoQuestoes.validators.MateriaValidator;
 
 @Controller
 public class MateriaController {
 
 	@Autowired
-	private MateriaServiceImpl service;
+	private MateriaRepository service;
 
 	private static final Logger log = LoggerFactory.getLogger(MateriaController.class);
 
@@ -50,7 +50,7 @@ public class MateriaController {
 			return ResponseEntity.badRequest().body(response);
 
 		} else {
-			long idMateria = service.persist(materia);
+			long idMateria = service.save(materia).getId();
 			response.setData(idMateria);
 			return ResponseEntity.ok(response);
 		}

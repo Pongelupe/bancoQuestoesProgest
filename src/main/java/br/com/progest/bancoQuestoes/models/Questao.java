@@ -3,6 +3,8 @@ package br.com.progest.bancoQuestoes.models;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,9 +25,12 @@ public class Questao {
 	@JoinColumn(name = "id_questao")
 	private Materia materia;
 
-	private String titulo;
+	private String descricao;
 	private String corpo;
 	private String urlQuestao;
+
+	@Enumerated(EnumType.STRING)
+	private Dificuldade dificuldade;
 
 	@Temporal(TemporalType.DATE)
 	private Date usadaEm;
@@ -33,11 +38,12 @@ public class Questao {
 	@Temporal(TemporalType.DATE)
 	private Date adicionadaEm;
 
-	public Questao(Materia materia, String titulo, String corpo, String urlQuestao) {
+	public Questao(Materia materia, String descricao, String corpo, String urlQuestao, Dificuldade dificuldade) {
 		this.materia = materia;
-		this.titulo = titulo;
+		this.descricao = descricao;
 		this.corpo = corpo;
 		this.urlQuestao = urlQuestao;
+		this.dificuldade = dificuldade;
 		this.usadaEm = null;
 		this.adicionadaEm = new Date();
 	}
@@ -54,12 +60,12 @@ public class Questao {
 		this.materia = materia;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getCorpo() {
@@ -76,6 +82,14 @@ public class Questao {
 
 	public void setUrlQuestao(String urlQuestao) {
 		this.urlQuestao = urlQuestao;
+	}
+
+	public Dificuldade getDificuldade() {
+		return dificuldade;
+	}
+
+	public void setDificuldade(Dificuldade dificuldade) {
+		this.dificuldade = dificuldade;
 	}
 
 	public long getId() {
@@ -100,7 +114,7 @@ public class Questao {
 
 	@Override
 	public String toString() {
-		return "Questao [id=" + id + ", materia=" + materia + ", titulo=" + titulo + ", corpo=" + corpo
+		return "Questao [id=" + id + ", materia=" + materia + ", descricao=" + descricao + ", corpo=" + corpo
 				+ ", urlQuestao=" + urlQuestao + ", usadaEm=" + usadaEm + ", adicionadaEm=" + adicionadaEm + "]";
 	}
 
