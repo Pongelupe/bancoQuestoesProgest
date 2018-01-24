@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,7 +24,7 @@ import br.com.progest.bancoQuestoes.utils.FileResolver;
 import br.com.progest.bancoQuestoes.validators.QuestaoValidator;
 
 @Controller
-public class QuestaoController {
+public class CadastroQuestaoController {
 
 	@Autowired
 	private QuestaoRepository questaoRepository;
@@ -32,6 +34,8 @@ public class QuestaoController {
 
 	@Autowired
 	private FileResolver fileResolver;
+
+	private static final Logger log = LoggerFactory.getLogger(CadastroQuestaoController.class);
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -56,10 +60,13 @@ public class QuestaoController {
 			questao.setMateria(materia);
 			questao.setAdicionadaEm(new Date());
 			questao.setUsadaEm(utilizada ? new Date() : null);
-			questao.setUrlQuestao(foto == null ? null : fileResolver.write("questoes", foto));
+			questao.setUrlQuestao(
+					foto == null || foto.getOriginalFilename().isEmpty() ? null : fileResolver.write("questoes", foto));
 			questao.setDificuldade(dificuldade);
 
 			questaoRepository.save(questao);
+
+			log.info("Questão adicionada " + questao);
 		}
 		return new ModelAndView("redirect:/");
 	}
