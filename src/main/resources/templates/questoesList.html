@@ -20,14 +20,16 @@
 		        <th>Matéria</th>
 		        <th>Descricao</th>
 		        <th>Dificuldade</th>
+		        <th>Utilizada</th>
         	</tr>
         </thead>
-        <tbody>
+        <tbody  id="tableQuestoes">
 	         <th:block th:each="questao : ${questoes}">
 	         		<tr>
 	         			<td th:text="${questao.materia.nome}"></td>
 						<td th:text="${questao.descricao}"></td>
 						<td th:text="${questao.dificuldade}"></td>
+						<td th:text="${questao.usadaEm}"></td>
 	         		</tr>
 			</th:block>
         </tbody>
@@ -35,14 +37,8 @@
 
 	<div lang="pt" th:include="fragments/footer :: footer"></div>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script  th:inline="javascript">
-			$("#btFilter").click(() => {
-				console.log('js aqui');
-			});
-		</script>
-		<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+	<script src="index.js"></script>
 </body>
 </html>

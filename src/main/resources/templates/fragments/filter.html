@@ -15,8 +15,8 @@
 						<div class="form-group">
 								<label class="filter-col" style="margin-right: 0;"
 									for="pref-perpage">Matéria:</label> 
-								<select class="form-control" name="materia">
-									<option>Todas</option>
+								<select class="form-control" name="materia" id="selectMateria">
+									<option value="any">Todas</option>
 									<th:block th:each="materia : ${materias}">
 				 						<option th:text="${materia.nome}"></option>
 				 					</th:block>
@@ -24,18 +24,14 @@
 						</div>
 						<div class="form-group">
 							<label class="filter-col" style="margin-right: 0;">Dificuldade:</label>
-							<select name="dificuldade" class="form-control">
-								<option selected="selected" value="qualquer">Qualquer</option>
-								<option value="facil">Fácil</option>
-								<option value="medio">Médio</option>
-								<option value="dificil">Dificil</option>
+							<select name="dificuldade" class="form-control" id="selectDificuldade" >
+								<option selected="selected" value="any">Qualquer</option>
+								<option value="FACIL">Fácil</option>
+								<option value="MEDIO">Médio</option>
+								<option value="DIFICIL">Difícil</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<div class="checkbox"
-								style="margin-left: 10px; margin-right: 10px;">
-								<label><input type="checkbox" name="isProcessoSeletivo"> Processo seletivo</input></label>
-							</div>
 							<button class="btn btn-primary filter-col" id="btFilter">
 								<span class="glyphicon glyphicon-record"></span> Aplicar filtro
 							</button>
