@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -35,7 +33,6 @@ public class CadastroQuestaoController {
 	@Autowired
 	private FileResolver fileResolver;
 
-	private static final Logger log = LoggerFactory.getLogger(CadastroQuestaoController.class);
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -66,7 +63,6 @@ public class CadastroQuestaoController {
 
 			questaoRepository.save(questao);
 
-			log.info("Questão adicionada " + questao);
 		}
 		return new ModelAndView("redirect:/");
 	}
