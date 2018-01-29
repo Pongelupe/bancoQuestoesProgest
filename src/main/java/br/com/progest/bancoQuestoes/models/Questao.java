@@ -55,6 +55,10 @@ public class Questao {
 	public Questao() {
 	}
 
+	public Questao(long id) {
+		this.id = id;
+	}
+
 	public Materia getMateria() {
 		return materia;
 	}

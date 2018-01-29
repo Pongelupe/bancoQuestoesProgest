@@ -6,12 +6,14 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/styles.css"></link>
 <title>Progest</title>
 </head>
 <body>
 	<h1>Listagem de Questões</h1>
 	
 	<div lang="pt" th:include="fragments/filter :: filter(${materias})"></div>
+	<div lang="pt" th:include="fragments/modalQuestao :: modalQuestao"></div>
 	
 	
 	 <table class="table table-hover table-bordered">
@@ -25,7 +27,7 @@
         </thead>
         <tbody  id="tableQuestoes">
 	         <th:block th:each="questao : ${questoes}">
-	         		<tr>
+	         		<tr th:attr="onclick = ${ 'buildModal(' + questao.id + ')' }">
 	         			<td th:text="${questao.materia.nome}"></td>
 						<td th:text="${questao.descricao}"></td>
 						<td th:text="${questao.dificuldade}"></td>
@@ -38,7 +40,8 @@
 	<div lang="pt" th:include="fragments/footer :: footer"></div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-	<script src="filter.js"></script>
+	<script src="js/questoesList.js"></script>
 </body>
 </html>

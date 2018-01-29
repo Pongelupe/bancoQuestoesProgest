@@ -47,7 +47,7 @@ public class CadastroQuestaoController {
 	}
 
 	@PostMapping("/questao")
-	public ModelAndView adicionarQuestao(String nomeMateria, boolean utilizada, String dificuldade, MultipartFile foto,
+	public ModelAndView adicionarQuestao(String nomeMateria, boolean utilizada, boolean isProcessoSeletivo, String dificuldade, MultipartFile foto,
 			@Valid Questao questao, BindingResult result) {
 
 		if (result.hasErrors()) {
@@ -60,6 +60,7 @@ public class CadastroQuestaoController {
 			questao.setUrlQuestao(
 					foto == null || foto.getOriginalFilename().isEmpty() ? null : fileResolver.write("questoes", foto));
 			questao.setDificuldade(dificuldade);
+			questao.setProcessoSeletivo(isProcessoSeletivo);
 
 			questaoRepository.save(questao);
 
