@@ -60,7 +60,6 @@ public class CadastroQuestaoController {
 			questao.setUrlQuestao(
 					foto == null || foto.getOriginalFilename().isEmpty() ? null : fileResolver.write("questoes", foto));
 			questao.setDificuldade(dificuldade);
-			questao.setProcessoSeletivo(isProcessoSeletivo);
 
 			questaoRepository.save(questao);
 

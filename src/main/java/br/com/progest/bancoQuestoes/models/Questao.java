@@ -28,7 +28,6 @@ public class Questao {
 	private String descricao;
 	private String corpo;
 	private String urlQuestao;
-	private boolean isProcessoSeletivo;
 
 	@Enumerated(EnumType.STRING)
 	private Dificuldade dificuldade;
@@ -39,14 +38,12 @@ public class Questao {
 	@Temporal(TemporalType.DATE)
 	private Date adicionadaEm;
 
-	public Questao(Materia materia, String descricao, String corpo, String urlQuestao, Dificuldade dificuldade,
-			boolean isProcessoSeletivo) {
+	public Questao(Materia materia, String descricao, String corpo, String urlQuestao, Dificuldade dificuldade) {
 		this.materia = materia;
 		this.descricao = descricao;
 		this.corpo = corpo;
 		this.urlQuestao = urlQuestao;
 		this.dificuldade = dificuldade;
-		this.isProcessoSeletivo = isProcessoSeletivo;
 		this.usadaEm = null;
 		this.adicionadaEm = new Date();
 	}
@@ -93,14 +90,6 @@ public class Questao {
 
 	public Dificuldade getDificuldade() {
 		return dificuldade;
-	}
-
-	public boolean isProcessoSeletivo() {
-		return isProcessoSeletivo;
-	}
-
-	public void setProcessoSeletivo(boolean isProcessoSeletivo) {
-		this.isProcessoSeletivo = isProcessoSeletivo;
 	}
 
 	public void setDificuldade(String dificuldade) {

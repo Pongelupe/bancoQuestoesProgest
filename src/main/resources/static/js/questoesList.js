@@ -37,10 +37,7 @@ function buildModal(id) {
 			
 			$('#modalUsadaEm').text(data.usadaEm != null ? `Questão utilizada em ${dateFormatter(new Date(data.usadaEm))}` :
 				'');
-			
-			$('#modalProcessoSeletivo').text(data.processoSeletivo ? `Questão de processo seletivo` :
-					'');
-			
+						
 			$('#modalQuestaoImg').attr('src',data.urlQuestao != null ? data.urlQuestao : 'img/semImagem.png');
 			
 			$("#modalUtilizar").val(id);
