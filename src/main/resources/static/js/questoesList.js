@@ -26,11 +26,9 @@ function buildModal(id) {
 				$('#modalUsadaEm').text(`Questão utilizada em ${data.usadaEm}`);
 			if(data.processoSeletivo)
 				$('#modalProcessoSeletivo').text(`Questão de processo seletivo`);
-			if(data.urlQuestao != null) {
-				let imgQuestao = $('<img> </img>');
-				imgQuestao.attr('src',data.urlQuestao);
-				imgQuestao.appendTo('.modal-body');
-			}
+			if(data.urlQuestao != null) 
+				$('#modalQuestaoImg').attr('src',data.urlQuestao);
+			
 			$("#modalUtilizar").val(id);
 			$('#modalQuestao').modal('show');	
 				
@@ -49,10 +47,10 @@ function utilizarQuestao() {
 	    data: JSON.stringify(idQuestao),
 	    dataType: 'json',
 	    contentType: "application/json; charset=utf-8",
-	    success: res => {
-	        alert("it works!");
+	    success: data => {
+	        $($('#line' + idQuestao).children()[3]).text(dateFormatter(new Date(data)));
 	    },
-	    error: res =>{
+	    error: res => {
 	        alert("Bad thing happend! " + res.statusText);
 	    }
 	});

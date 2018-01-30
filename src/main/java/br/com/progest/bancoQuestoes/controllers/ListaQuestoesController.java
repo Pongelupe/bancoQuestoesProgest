@@ -39,11 +39,11 @@ public class ListaQuestoesController {
 	}
 
 	@PostMapping("/utilizarQuestao")
-	public @ResponseBody Long questao(@RequestBody Long idQuestao) {
+	public @ResponseBody Date questao(@RequestBody Long idQuestao) {
 		Questao questao = questaoRepository.findOne(idQuestao);
 		questao.setUsadaEm(new Date());
 		questaoRepository.save(questao);
-		return questao.getId();
+		return questao.getUsadaEm();
 	}
 
 }
