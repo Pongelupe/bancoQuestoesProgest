@@ -7,6 +7,23 @@
     padding: 15px;
 }
 
+.filter {
+	margin-bottom: 15px;
+}
+
+.form-group {
+	margin-right: 25px;
+}
+
+.footer {
+	margin-top: 40px;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 #modalQuestaoImg {
 	max-height: 250px;
 	max-width: 350px;

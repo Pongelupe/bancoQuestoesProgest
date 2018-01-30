@@ -6,11 +6,11 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/navBar.css"></link>
 <title>Progest</title>
 </head>
 <body>
-
-	<h1>Cadastro de questões</h1>
+	<div lang="pt" th:include="fragments/header :: header"></div>
 	<form action="questao" method="post" enctype="multipart/form-data">
 		<div class="form-group form-inline">
 			<label for="nome">Matéria</label>
@@ -50,7 +50,6 @@
 		</div>
 		<div class="container">
 			<button type="submit" class="btn btn-success col-md-6">Cadastrar</button>
-			<a class="btn btn-info col-md-6" th:href="@{/list}">Listar</a>
 		</div>
 	</form>
 	

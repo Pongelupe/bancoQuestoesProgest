@@ -7,11 +7,11 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/styles.css"></link>
+<link rel="stylesheet" type="text/css" href="css/navBar.css"></link>
 <title>Progest</title>
 </head>
 <body>
-	<h1>Listagem de Questões</h1>
-	
+	<div lang="pt" th:include="fragments/header :: header"></div>	
 	<div lang="pt" th:include="fragments/filter :: filter(${materias})"></div>
 	<div lang="pt" th:include="fragments/modalQuestao :: modalQuestao"></div>
 	
@@ -26,18 +26,29 @@
         	</tr>
         </thead>
         <tbody  id="tableQuestoes">
-	         <th:block th:each="questao : ${questoes}">
-	         		<tr th:attr="onclick = ${ 'buildModal(' + questao.id + ')' }" th:id="line + ${questao.id}">
-	         			<td th:text="${questao.materia.nome}"></td>
-						<td th:text="${questao.descricao}"></td>
-						<td th:text="${questao.dificuldade}"></td>
-						<td th:text="${questao.usadaEm}"></td>
-	         		</tr>
-			</th:block>
+        	<div th:if="${not #lists.isEmpty(questoes)}">
+		         <th:block th:each="questao : ${questoes}">
+		         		<tr th:attr="onclick = ${ 'buildModal(' + questao.id + ')' }" th:id="line + ${questao.id}">
+		         			<td th:text="${questao.materia.nome}"></td>
+							<td th:text="${questao.descricao}"></td>
+							<td th:text="${questao.dificuldade}"></td>
+							<td th:text="${questao.usadaEm}"></td>
+		         		</tr>
+				</th:block>
+			</div>
         </tbody>
      </table>
+     <div th:if="${#lists.isEmpty(questoes)}">
+	     <div class="container">
+	     	<div class="row">
+			     <div class=" col-centered">
+			     	<p class="text-warning">Sem Questoes</p>
+		     	</div>
+		    </div>
+	     </div>
+     </div>
 
-	<div lang="pt" th:include="fragments/footer :: footer"></div>
+	<div lang="pt" th:include="fragments/footer :: footer" class="col-centered"></div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>

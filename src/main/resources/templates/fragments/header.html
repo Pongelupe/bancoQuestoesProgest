@@ -6,15 +6,18 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	rel="stylesheet" />
 </head>
-<body>
-	<div th:fragment="footer">
-	    <footer class="footer" >
-	        <div>
-	            <p class="text-muted">&copy; 2018 | @Pongelupe</p>
-	        </div>
-	    </footer>
-	    
-	</div>
+<body th:fragment="header">
+	<nav class="navbar navbar-default navbar-light">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	       <a class="navbar-brand" href="#">
+	    		<img src="img/logo.png" width="70" height="30" alt=""> </img>
+	  		</a>
+	  		<a class="navbar-item" href="/">Cadastrar</a>
+	  		<a class="navbar-item" href="/list">Listar</a>
+	    </div>
+	  </div>
+	</nav>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>

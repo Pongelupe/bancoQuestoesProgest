@@ -7,13 +7,13 @@
 	rel="stylesheet" />
 </head>
 <body th:fragment="filter(materias)">
-	<div class="container" >
+	<div class="container filter" >
 		<div class="row">
 			<div id="filter-panel" class=" filter-panel">
 				<div class="panel panel-default">
 					<div class="panel-body form-inline">
 						<div class="form-group">
-								<label class="filter-col" style="margin-right: 0;"
+								<label class="filter-col" style="margin-right: 5px;"
 									for="pref-perpage">Matéria:</label> 
 								<select class="form-control" name="materia" id="selectMateria">
 									<option value="any">Todas</option>
@@ -22,8 +22,8 @@
 				 					</th:block>
 								</select>
 						</div>
-						<div class="form-group">
-							<label class="filter-col" style="margin-right: 0;">Dificuldade:</label>
+						<div class="form-group" style="margin-right: 15px;">
+							<label class="filter-col" style="margin-right: 5px;">Dificuldade:</label>
 							<select name="dificuldade" class="form-control" id="selectDificuldade" >
 								<option selected="selected" value="any">Qualquer</option>
 								<option value="FACIL">Fácil</option>
@@ -32,7 +32,7 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary filter-col" id="btFilter">
+							<button class="btn btn-success filter-col" id="btFilter">
 								<span class="glyphicon glyphicon-record"></span> Aplicar filtro
 							</button>
 						</div>

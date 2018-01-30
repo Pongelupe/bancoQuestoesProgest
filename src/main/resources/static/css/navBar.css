@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.navbar {
+	background-color: #e3f2fd;
+	margin-bottom: 30px;
+}
+
+.navbar-item {
+	padding: 5px;
+	color: black;
+}
