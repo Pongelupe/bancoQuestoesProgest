@@ -7,19 +7,20 @@
 	rel="stylesheet" />
 </head>
 <body th:fragment="modalQuestao">
-	<div class="modal hide fade" id="modalQuestao" tabindex="-1"  role="dialog" aria-labelledby="modalLabel">
-	 <div class="modal-dialog" role="document">
+	<div class="modal fade" id="modalQuestao" tabindex="-1"  role="dialog" aria-labelledby="modalLabel">
+	 <div class="modal-dialog" role="dialog">
 		<div class="modal-content">
 			<div class="modal-header">
+				<h5 class="modal-title" id="modalLabel"></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="modalLabel"></h4>
-			</div>
-			
+			</div>	
 			<div class="modal-body">
-		        <p id="modalDescricao"></p>
-		        <h4 id="modalUsadaEm"></h4>
-		        <h4 id="modalProcessoSeletivo"></h4>
-		        <img id="modalQuestaoImg" alt="questao" src="img/semImagem.png"></img>
+				<div class="container">
+			        <p id="modalCorpo"></p>
+			        <img id="modalQuestaoImg" alt="questao" src="img/semImagem.png"></img>
+			        <h4 id="modalUsadaEm"></h4>
+			        <h4 id="modalProcessoSeletivo"></h4>
+				</div>
 		    </div>
 			
 			<div class="modal-footer">

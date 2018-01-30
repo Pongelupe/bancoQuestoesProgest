@@ -14,24 +14,40 @@ $("#btFilter").click(() => {
 			      $(this).toggle(test($(this).text(), materia) &&
 			    		  test($(this).text(), dificuldade));
 			    });
+			    
+			    if ($("#tableQuestoes tr:visible").length == 0)
+			    	$(".col-centered").prepend(`
+			    	<div class="container" id="warning">
+				     	<div class="row">
+						     <div class=" col-centered">
+						     	<p class="text-warning">Sem Questões</p>
+					     	</div>
+			    		</div>
+				    </div>
+			    	`);
+			    else
+			    	$('#warning').remove();
 			});
 
 function buildModal(id) {
 	$.get("/questao/" + id, (data, status)=> {
 		if(status =='success') {			
 			$('#modalLabel').text(`Questão de ${data.materia.nome} - ${data.dificuldade}`);
-			$('#modalDescricao').text(data.corpo);
+			$('#modalCorpo').text(data.corpo);
 			
-			if(data.usadaEm != null)
-				$('#modalUsadaEm').text(`Questão utilizada em ${data.usadaEm}`);
-			if(data.processoSeletivo)
-				$('#modalProcessoSeletivo').text(`Questão de processo seletivo`);
-			if(data.urlQuestao != null) 
-				$('#modalQuestaoImg').attr('src',data.urlQuestao);
+			$('#modalUsadaEm').text(data.usadaEm != null ? `Questão utilizada em ${dateFormatter(new Date(data.usadaEm))}` :
+				'');
+			
+			$('#modalProcessoSeletivo').text(data.processoSeletivo ? `Questão de processo seletivo` :
+					'');
+			
+			$('#modalQuestaoImg').attr('src',data.urlQuestao != null ? data.urlQuestao : 'img/semImagem.png');
 			
 			$("#modalUtilizar").val(id);
 			$('#modalQuestao').modal('show');	
 				
+		} else {
+			alert('Algo deu errado');
 		}
 		
 	});

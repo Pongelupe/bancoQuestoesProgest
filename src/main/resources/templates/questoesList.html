@@ -20,7 +20,7 @@
         <thead>
         	<tr>
 		        <th>Matéria</th>
-		        <th>Descricao</th>
+		        <th>Descrição</th>
 		        <th>Dificuldade</th>
 		        <th>Utilizada</th>
         	</tr>
@@ -32,20 +32,19 @@
 		         			<td th:text="${questao.materia.nome}"></td>
 							<td th:text="${questao.descricao}"></td>
 							<td th:text="${questao.dificuldade}"></td>
-							<td th:text="${questao.usadaEm}"></td>
+							<div th:if="${questao.usadaEm != null}">
+								<td th:text="${#dates.format(questao.usadaEm, 'dd/MM/yyyy')}"></td>
+							</div>
+							<div th:unless="${questao.usadaEm != null}">
+								<td>Não Utilizada</td>
+							</div>
 		         		</tr>
 				</th:block>
 			</div>
         </tbody>
      </table>
      <div th:if="${#lists.isEmpty(questoes)}">
-	     <div class="container">
-	     	<div class="row">
-			     <div class=" col-centered">
-			     	<p class="text-warning">Sem Questoes</p>
-		     	</div>
-		    </div>
-	     </div>
+	     <div lang="pt" th:include="fragments/noQuestionsAlert :: noQuestionsAlert" class="col-centered"></div>
      </div>
 
 	<div lang="pt" th:include="fragments/footer :: footer" class="col-centered"></div>
