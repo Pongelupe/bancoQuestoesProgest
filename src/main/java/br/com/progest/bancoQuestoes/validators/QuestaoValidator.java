@@ -22,10 +22,10 @@ public class QuestaoValidator implements Validator {
 		final String corpo = questao.getCorpo();
 
 		if (descricao == null || descricao.isEmpty())
-			errors.rejectValue("descricao", "descricao inválido");
+			errors.rejectValue("descricao", "Descrição inválida");
 
 		if (corpo == null || corpo.isEmpty())
-			errors.rejectValue("corpo", "corpo inválido");
+			errors.rejectValue("corpo", "Corpo inválido");
 
 	}
 

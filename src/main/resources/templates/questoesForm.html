@@ -6,48 +6,66 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/styles.css"></link>
 <link rel="stylesheet" type="text/css" href="css/navBar.css"></link>
 <title>Progest</title>
 </head>
 <body>
 	<div lang="pt" th:include="fragments/header :: header"></div>
-	<form action="questao" method="post" enctype="multipart/form-data">
-		<div class="form-group form-inline">
-			<label for="nome">Matéria</label>
-				<select class="form-control" name="nomeMateria">
-					 <th:block th:each="materia : ${materias}">
-					 	<option th:text="${materia.nome}"></option>
-					 </th:block>
-			    </select>
-			<label for="descricao">Descrição</label> 
-			<input type="text" class="form-control" name="descricao" placeholder="ex. Questão sobre e-mail" />
-			<br />
+	<div class="container">
+		<div th:if="${mensagens != null and mensagens.size() > 1}">
+			<div class="alert alert-danger">
+				<th:block th:each="mensagem : ${mensagens}">
+					<h5 th:text="${mensagem}" ></h5>
+				</th:block>
+			</div>
 		</div>
-		<div class="form-group">
-			<label for="corpo">Corpo da questão</label>
-			<textarea  class="form-control" rows="9" cols="9" name ="corpo"></textarea> 
-			<br />
+		<div th:if="${mensagens != null and mensagens.size() == 1}">
+			<div class="alert alert-success">
+				<th:block th:each="mensagem : ${mensagens}">
+					<h5 th:text="${mensagem}" ></h5>
+				</th:block>
+			</div>
 		</div>
-		<div class="form-group">
-			<label for="utilizada">Dificuldade</label>
-			<select class="form-control" name="dificuldade">
-			      <option>Fácil</option>
-			      <option>Médio</option>
-			      <option>Difícil</option>
-			</select>
-			<br />
-		</div>
-		<div class="form-group form-inline">
-			<label for="utilizada">Já foi utilizada? Sim:</label>
-			<input type="checkbox" name="utilizada"/>
-		</div>
-		<div class="form-group form-inline">
-			<input type="file" name="foto"/>
-		</div>
-		<div class="container">
-			<button type="submit" class="btn btn-success col-md-6">Cadastrar</button>
-		</div>
-	</form>
+		<form action="questao" method="post" enctype="multipart/form-data">
+			<div class="form-group form-inline">
+				<label for="nome" class="form-label">Matéria</label>
+					<select class="form-control" name="nomeMateria">
+						 <th:block th:each="materia : ${materias}">
+						 	<option th:text="${materia.nome}"></option>
+						 </th:block>
+				    </select>
+				<label for="descricao" class="form-label">Descrição</label> 
+				<input type="text" class="form-control" name="descricao" placeholder="ex. Questão sobre e-mail" />
+				<br />
+			</div>
+			<div class="form-group">
+				<label for="corpo">Corpo da questão</label>
+				<textarea  class="form-control" rows="9" cols="9" name ="corpo"></textarea> 
+				<br />
+			</div>
+			<div class="form-group">
+				<label for="utilizada">Dificuldade</label>
+				<select class="form-control" name="dificuldade">
+				      <option>Fácil</option>
+				      <option>Médio</option>
+				      <option>Difícil</option>
+				</select>
+				<br />
+			</div>
+			<div class="form-group form-inline">
+				<label for="utilizada" class="form-label">Já foi utilizada?</label>
+				<input type="checkbox" name="utilizada" class="form-label"/>
+				<label>Sim</label>
+			</div>
+			<div class="form-group form-inline">
+				<input type="file" name="foto"/>
+			</div>
+			<div class="container">
+				<button type="submit" class="btn btn-success col-md-6">Cadastrar</button>
+			</div>
+		</form>
+	</div>
 	
 	<div lang="pt" th:include="fragments/footer :: footer"></div>
 

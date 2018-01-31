@@ -1,5 +1,6 @@
 package br.com.progest.bancoQuestoes.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.validation.Valid;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.progest.bancoQuestoes.models.Materia;
 import br.com.progest.bancoQuestoes.models.Questao;
@@ -33,7 +35,6 @@ public class CadastroQuestaoController {
 	@Autowired
 	private FileResolver fileResolver;
 
-
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.setValidator(new QuestaoValidator());
@@ -47,11 +48,16 @@ public class CadastroQuestaoController {
 	}
 
 	@PostMapping("/questao")
-	public ModelAndView adicionarQuestao(String nomeMateria, boolean utilizada, boolean isProcessoSeletivo, String dificuldade, MultipartFile foto,
-			@Valid Questao questao, BindingResult result) {
+	public ModelAndView adicionarQuestao(String nomeMateria, boolean utilizada, boolean isProcessoSeletivo,
+			String dificuldade, MultipartFile foto, @Valid Questao questao, BindingResult result,
+			RedirectAttributes redirectAttributes) {
+
+		ArrayList<String> mensagens = new ArrayList<String>();
 
 		if (result.hasErrors()) {
 			questao = null;
+			result.getAllErrors().forEach(error -> mensagens.add(error.getCode()));
+
 		} else {
 			Materia materia = materiaRepository.findByNome(nomeMateria);
 			questao.setMateria(materia);
@@ -63,7 +69,11 @@ public class CadastroQuestaoController {
 
 			questaoRepository.save(questao);
 
+			mensagens.add("Questão adicionada com sucesso !");
 		}
+
+		redirectAttributes.addFlashAttribute("mensagens", mensagens);
+
 		return new ModelAndView("redirect:/");
 	}
 

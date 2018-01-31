@@ -11,12 +11,16 @@
 	margin-bottom: 15px;
 }
 
-.form-group {
+.form-group  .form-control {
 	margin-right: 25px;
 }
 
 .footer {
 	margin-top: 40px;
+}
+
+.form-label {
+	margin-right: 7px;
 }
 
 .col-centered{
